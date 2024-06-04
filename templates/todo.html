@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create ToDo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #FF44CC;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input, textarea {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ToDo List Icon">
+        <h1>Create ToDo</h1>
+        <form method="POST">
+            <input type="text" name="activity" placeholder="Activity" required>
+            <input type="date" name="date_finish_by" placeholder="Finish By" required>
+            <textarea name="progress" placeholder="Progress" rows="2" required></textarea>
+            <button type="submit">Add ToDo</button>
+        </form>
+        <br>
+        <a href="/">Back to Home</a>
+        <br>
+        <h3>༺☆༻</h3>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View ToDo List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #FF44CC;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: #fff;
+        }
+        th {
+            background-color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+            display: block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ToDo List Icon" style="width: 100px; height: 100px;">
+        <h1>ToDo List</h1>
+        <table>
+            <tr>
+                <th>Activity</th>
+                <th>Due Date</th>
+                <th>Progress</th>
+                <th>Action</th>
+            </tr>
+            {% for todo in todos %}
+            <tr>
+                <td>{{ todo['Activity'] }}</td>
+                <td>{{ todo['Date_FinishBy'] }}</td>
+                <td>{{todo['Progress']}}</td>
+                <td>
+                    <form action="/delete_todo/{{ todo['No'] }}" method="POST" style="display: inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/todo">Back to ToDo Form</a>
+        <h3>༺☆༻</h3>
+    </div>
+</body>
+</html>

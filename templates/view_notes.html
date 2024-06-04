@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Notes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            color: #FF44CC;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        a {
+            color: #DDEFE4;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="ToDo List Icon">
+        <h1>View Notes</h1>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Date Entered</th>
+                <th>Action</th>
+            </tr>
+            {% for note in notes %}
+                <tr>
+                    <td>{{ note['Title'] }}</td>
+                    <td>{{ note['Date_Entered'] }}</td>
+                    <td>
+                        <form action="/delete_note/{{ note['Title'] }}" method="POST" style="display: inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a href="/note">Back to Note Form</a>
+        <h3>༺☆༻</h3>
+    </div>
+</body>
+</html>
